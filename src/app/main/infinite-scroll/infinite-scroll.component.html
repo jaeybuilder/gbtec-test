@@ -1,0 +1,35 @@
+<div class="w-100-p h-100-p p-12" fxLayoutAlign="center center" id="infinite-scroll">
+  <div class="w-100-p h-100-p mat-card border-radius-12 mw-700 p-8" fxFlex fxLayout="column"
+    fxLayoutAlign="center center">
+
+    <div class="w-100-p" fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="center start" fxLayoutGap="10px">
+      <mat-form-field appearance="outline" ngClass.xs="w-100-p h-48">
+        <mat-label>Image search terms</mat-label>
+        <input type="text" [(ngModel)]="searchParam" matInput placeholder="Search">
+      </mat-form-field>
+      <button mat-flat-button color="accent" class="m-4 search" ngClass.xs="w-100-p mb-12" (click)="searchPhotos()">
+        <mat-icon aria-hidden="false">search</mat-icon>
+        Search
+      </button>
+    </div>
+
+    <h2 *ngIf="_album.length === 0">Please make a search to show some images</h2>
+    <div *ngIf="_album.length > 0" class="w-100-p" fxLayoutAlign="center center" style="margin-bottom: 20px;">
+      <mat-divider class="w-95-p"></mat-divider>
+    </div>
+
+    <div class="w-100-p scroll-container relative" fxLayoutGap="5px" fxLayout="column" fxLayoutAlign="start center"
+      infinite-scroll [infiniteScrollDistance]="1" [infiniteScrollUpDistance]="scrollUpDistance"
+      [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown($event)" (scrolledUp)="onUp($event)"
+      (scroll)="onScroll($event)">
+      <div class="w-100-p mw-450 p-4">
+        <img class="pointer w-100-p" *ngFor="let image of _album; let i = index" [src]="image.urls.small"
+          (click)="open(i)" />
+      </div>
+      <!-- <div *ngIf="scroller" class="scroller-btn" fxLayout="row" fxLayoutAlign="end center" (click)="scrollToBottom()">
+        <mat-icon class="teal-100-bg fuse-white-fg scroller-icon">keyboard_arrow_down</mat-icon>
+      </div> -->
+    </div>
+
+  </div>
+</div>

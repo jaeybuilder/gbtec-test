@@ -1,0 +1,30 @@
+<div fxLayout="column" fxLayoutAlign="space-between" id="app">
+  <mat-progress-bar mode="indeterminate" *ngIf="config.showProgressBar"></mat-progress-bar>
+  <!-- Navbar -->
+  <div id="navbar" fxLayout="row" fxLayoutAlign="space-between">
+    <div fxLayout="row" fxLayoutAlign="center center" class="h-74">
+      <button mat-flat-button>
+        <a [routerLink]="['/']">Infinite Scroll</a>
+      </button>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center" class="h-74 px-12">
+      GBTEC technical test
+    </div>
+  </div>
+  <!-- /Navbar -->
+
+  <!-- Content -->
+  <div id="content" fxFlex>
+    <router-outlet class="h-100-p"></router-outlet>
+    <!-- <app-infinite-scroll class="h-100-p"></app-infinite-scroll> -->
+  </div>
+  <!-- /Content -->
+
+  <!-- Footer -->
+  <div id="footer" *ngIf="!config.layout.footer.hidden">
+    <div fxLayout="row" fxLayoutAlign="end center" class="h-74 px-12">
+      Developed by Jairo Gonzalez &copy;
+    </div>
+  </div>
+  <!-- /Footer -->
+</div>
